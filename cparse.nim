@@ -41,12 +41,12 @@ type
   TParserOptions = object
     flags: set[TParserFlag]
     prefixes, suffixes: seq[string]
-    mangleRules: seq[tuple[pattern: TPeg, frmt: string]]
-    privateRules: seq[TPeg]
+    mangleRules: seq[tuple[pattern: Peg, frmt: string]]
+    privateRules: seq[Peg]
     dynlibSym, header: string
     macros: seq[TMacro]
-    toMangle: PStringTable
-    classes: PStringTable
+    toMangle: StringTableRef
+    classes: StringTableRef
   PParserOptions* = ref TParserOptions
   
   TParser* = object
@@ -61,7 +61,7 @@ type
   
   TReplaceTuple* = array[0..1, string]
 
-  ERetryParsing = object of ESynch
+  ERetryParsing = object of Exception
 
 
 

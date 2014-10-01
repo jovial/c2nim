@@ -347,9 +347,9 @@ proc getNumber(L: var TLexer, tok: var TToken) =
         tok.xkind = pxInt64Lit
       else: 
         tok.xkind = pxIntLit
-  except EInvalidValue: 
+  except ValueError: 
     lexMessage(L, errInvalidNumber, tok.s)
-  except EOverflow: 
+  except OverflowError: 
     lexMessage(L, errNumberOutOfRange, tok.s)
   # ignore type suffix:
   while L.buf[L.bufpos] in {'A'..'Z', 'a'..'z'}: inc(L.bufpos)
